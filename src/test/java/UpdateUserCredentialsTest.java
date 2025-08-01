@@ -33,12 +33,12 @@ public class UpdateUserCredentialsTest {
     @AfterEach
     public void cleanUp(){
         try {
-            ValidatableResponse updatedUser =  client.loginUser(userUpdated, bearerToken);
+            ValidatableResponse updatedUser =  client.loginUser(userUpdated);
             bearerToken = client.getBearerToken(updatedUser);
             client.deleteUser(bearerToken);
         } catch (Exception e) {
             bearerToken = client.getBearerToken(createdUserResponse);
-            ValidatableResponse initialUser =  client.loginUser(userInitial, bearerToken);
+            ValidatableResponse initialUser =  client.loginUser(userInitial);
             bearerToken = client.getBearerToken(initialUser);
             client.deleteUser(bearerToken);
         }

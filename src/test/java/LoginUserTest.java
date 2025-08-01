@@ -33,7 +33,7 @@ public class LoginUserTest {
     @Test
     @DisplayName("Авторизация пользователя - успех")
     public void loginUser_success(){
-        ValidatableResponse response = client.loginUser(user, bearerToken);
+        ValidatableResponse response = client.loginUser(user);
 
         response.assertThat().statusCode(200)
                 .and().body("success", equalTo(true))
@@ -50,7 +50,7 @@ public class LoginUserTest {
     public void loginUser_invalidEmailAndPassword_expectError(){
         User userInvalidCredentials =
                 new User(USER_INVALID_EMAIL, USER_INVALID_PASSWORD, USER_NAME);
-        ValidatableResponse response = client.loginUser(userInvalidCredentials, bearerToken);
+        ValidatableResponse response = client.loginUser(userInvalidCredentials);
 
         response.assertThat().statusCode(401)
                 .and().body("success", equalTo(false))

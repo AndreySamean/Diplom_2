@@ -28,11 +28,10 @@ public class SBUserClient {
     }
 
     @Step("Авторизация пользователя")
-    public ValidatableResponse loginUser(User user, String bearerToken){
+    public ValidatableResponse loginUser(User user){
         return given()
                 .spec(REQUEST_SPECIFICATION_TEMPLATE)
-                .header("Authorization", bearerToken)
-                .and().body(user)
+                .body(user)
                 .post(LOGIN_USER_ENDPOINT)
                 .then()
                 .spec(RESPONSE_SPECIFICATION_TEMPLATE);
